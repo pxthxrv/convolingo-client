@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*, 
+*::before, 
+*::after {
+    box-sizing: border-box;
+  }
+
+button {
+    all: unset;
+}s
+  
+button:focus {
+    outline: revert;
+}
+
+html {
+    font-size: 10px;
+}

@@ -1,0 +1,31 @@
+@import "./variables";
+
+@mixin flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+// tablet breakpoint
+@mixin tablet {
+    @media screen and (min-width: $tablet-breakpoint) {
+        @content;
+    }
+}
+
+// desktop breakpoint
+@mixin desktop {
+    @media screen and (min-width: $desktop-breakpoint) {
+        @content;
+    }
+}
+
+@mixin type-rescale ($font-size, $line-height, $font-weight) {
+    font-size: $font-size;
+    line-height: $line-height;
+    font-weight: $font-weight;
+}
