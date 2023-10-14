@@ -1,20 +1,16 @@
 import { useState } from 'react'
 import './HomePage.scss'
+import ChatComponent from '../../components/Chat'
+import Chat from '../../components/Chat'
+import Dictionary from '../../components/Dictionary/Dictionary'
 
 export default function HomePage() {
-  const [count, setCount] = useState(0)
+  const [messages, setMessages] = useState([]);
 
   return (
     <>
-      <h1>Hello</h1>
-      <h2>Hello</h2>
-      <h3>Hello</h3>
-      <h4>Hello</h4>
-      <h5>Hello</h5>
-      <p>Hello</p>
-      <a>Hello</a>
-      <div>Hello</div>
-      <span>Hello</span>
-    </>
+      <Chat messages={messages} setMessages={setMessages}/>
+      <Dictionary messages={messages} setMessages={setMessages}/>
+      </>
   )
 }

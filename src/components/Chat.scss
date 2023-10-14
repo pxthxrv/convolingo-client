@@ -1,0 +1,43 @@
+.chat-box {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.messages {
+  max-height: 400px;
+  overflow-y: scroll;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+.message {
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+}
+
+.message.gpt-3 {
+  background-color: #e6f7ff;
+}
+
+.chat-input {
+  display: flex;
+  margin-top: 20px;
+}
+
+.chat-input input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+}
+
+.chat-input button {
+  padding: 0 20px;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  background-color: #0077cc;
+  color: #fff;
+  cursor: pointer;
+}
