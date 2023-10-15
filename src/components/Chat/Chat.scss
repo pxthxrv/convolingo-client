@@ -1,6 +1,16 @@
+@import "../../styles/partials/mixins";
+
+
 .chat-box {
-  max-width: 500px;
-  margin: 0 auto;
+  // chat boundaries
+  border: 0.1rem rgba(255, 255, 255, 0.194) solid;
+  border-radius: 0.5rem;
+  padding: 0.8rem;
+  min-height: 200px;
+}
+
+.chat-message {
+  margin-bottom: 0.4rem; // add space between 
 }
 
 .messages {

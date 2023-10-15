@@ -15,7 +15,9 @@ export default function Chat() {
       if (!inputValue) return;
   
       const newMessage = {
-        author: 'User: ',
+        preface: 'User: ',
+        author: 'user',
+        className: 'message__user',
         content: inputValue,
       };
   
@@ -29,7 +31,9 @@ export default function Chat() {
         });
   
         const gptMessage = {
-          author: 'Chat: ',
+          preface: 'Chat: ',
+          author: 'gpt',
+          className: 'message__user',
           content: response.data.gptReply,
         };
   
@@ -47,8 +51,8 @@ export default function Chat() {
         <div className="chat-container">
             <div className="chat-box">
                 {messages.map((message, index) => (
-                    <div key={index} className={`chat-message ${message.role}`}>
-                        {<strong>{message.author}</strong>}
+                    <div key={index} className={`chat-message ${message.className}`}>
+                        {<strong>{message.preface}</strong>}
                         {<span>{message.content}</span>}
                         
                     </div>
@@ -56,6 +60,7 @@ export default function Chat() {
             </div>
             <form onSubmit={handleSubmit}>
                 <input
+                    className="chat"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     placeholder="Type a message..."

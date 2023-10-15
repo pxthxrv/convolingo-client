@@ -1,7 +1,9 @@
+import "./Header.scss";
+
 export default function Header() {
     return(
     <>
-    <h1>ConvoLingo</h1>
+    <h1 className="header__title">ConvoLingo</h1>
     </>
     )
 }

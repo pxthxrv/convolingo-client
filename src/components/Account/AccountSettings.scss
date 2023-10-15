@@ -1,0 +1,283 @@
+// $red: rgba(255, 74, 86, 1);
+$red: #adff2f;
+
+.transition {
+  transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
+}
+
+// * {
+//   font-family: Helvetica, sans-serif;
+//   font-weight: light;
+//   -webkit-font-smoothing: antialiased;
+// }
+
+// html {
+//   background-color: $red; // or you can use rgba(245,248,252,1) as mentioned in the comment
+// }
+
+form {
+  h1 {
+    // color: $red;
+    font-weight: 100;
+    letter-spacing: 0.01em;
+    margin-top: 15px;
+    margin-left: 15px;
+    // margin-bottom: 35px;
+    // text-transform: uppercase;
+  }
+
+  button {
+    @extend .transition;
+    margin-top: 35px;
+    // background-color: white;
+    border: 1px solid $red;
+    line-height: 0;
+    font-size: 17px;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 20px 15px;
+    border-radius: 60px;
+    color: $red;
+    font-weight: 100;
+    letter-spacing: 0.01em;
+    position: relative;
+    z-index: 1;
+
+    &:hover,
+    &:focus {
+      color: white;
+      background-color: $red;
+    }
+  }
+
+  .question {
+    position: relative;
+    padding: 10px 0;
+
+    &:first-of-type {
+      padding-top: 0;
+    }
+
+    &:last-of-type {
+      padding-bottom: 0;
+    }
+
+    label {
+      @extend .transition;
+      transform-origin: left center;
+      color: $red;
+      font-weight: 100;
+      letter-spacing: 0.01em;
+      font-size: 17px;
+      box-sizing: border-box;
+      padding: 10px 15px;
+      display: block;
+      position: absolute;
+      margin-top: -40px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    select {
+        @extend .transition;
+        width: 250px;
+        appearance: none;
+        background-color: transparent; // Changed 'none' to 'transparent'
+        border: 1px solid $red;
+        line-height: 0;
+        font-size: 17px;
+  
+        box-sizing: border-box;
+        padding: 10px 15px;
+        border-radius: 60px;
+        color: $red;
+        font-weight: 100;
+        letter-spacing: 0.01em;
+        position: relative;
+        z-index: 1;
+  
+        &:focus {
+          outline: none;
+          background: $red;
+          color: white;
+          margin-top: 30px;
+        }
+  
+        &:valid {
+          margin-top: 30px;
+        }
+  
+        &:focus ~ label {
+          transform: translateY(-35px);
+        }
+  
+        &:valid ~ label {
+          text-transform: uppercase;
+          font-style: italic;
+          transform: translateY(-35px) scale(0.6);
+        }
+      }
+
+
+    // DATE FIELDS
+    input[type="text"] {
+      @extend .transition;
+      width: 250px;
+      appearance: none;
+      background-color: transparent; // Changed 'none' to 'transparent'
+      border: 1px solid $red;
+      line-height: 0;
+      font-size: 17px;
+
+      box-sizing: border-box;
+      padding: 10px 15px;
+      border-radius: 60px;
+      color: $red;
+      font-weight: 100;
+      letter-spacing: 0.01em;
+      position: relative;
+      z-index: 1;
+
+      &:focus {
+        outline: none;
+        background: $red;
+        color: white;
+        margin-top: 30px;
+      }
+
+      &:valid {
+        margin-top: 30px;
+      }
+
+      &:focus ~ label {
+        transform: translateY(-35px);
+      }
+
+      &:valid ~ label {
+        text-transform: uppercase;
+        font-style: italic;
+        transform: translateY(-35px) scale(0.6);
+      }
+    }
+
+
+    // DATE FIELDS
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      background: transparent;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    input[type="date"] {
+      @extend .transition;
+      background: transparent;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      z-index: 1;
+      width: 250px;
+      appearance: none;
+      background-color: transparent; // Changed 'none' to 'transparent'
+      border: 1px solid $red;
+      font-size: 17px;
+      padding: 10px 15px;
+      border-radius: 60px;
+      color: $red;
+      font-weight: 100;
+      letter-spacing: 0.01em;
+      z-index: 1;
+      color: transparent;
+
+      &:focus {
+        outline: none;
+        background: $red;
+        color: white;
+        margin-top: 30px;
+      }
+
+      &:valid {
+        margin-top: 30px;
+      }
+
+      &:focus ~ label {
+        transform: translateY(-35px);
+      }
+
+      &:valid ~ label {
+        text-transform: uppercase;
+        font-style: italic;
+        transform: translateY(-35px) scale(0.6);
+      }
+    }
+
+    input[type="date"]:valid,
+    input[type="date"]:valid::-webkit-datetime-edit-text {
+      color: $red; /* For webkit browsers */
+    }
+
+    input[type="date"]:focus::-webkit-datetime-edit-text,
+    input[type="date"]:focus::-webkit-datetime-edit-fields-wrapper,
+    input[type="date"]:focus::-webkit-datetime-edit-day-field,
+    input[type="date"]:focus::-webkit-datetime-edit-month-field,
+    input[type="date"]:focus::-webkit-datetime-edit-year-field {
+      color: white; /* For webkit browsers when focused */
+    }
+  }
+}
+
+.select-item {
+    @extend .transition;
+    height: 42px;
+    width: 250px;
+    appearance: none;
+    background-color: transparent;
+    border: 1px solid $red;
+    // line-height: 0;
+    font-size: 17px;
+    box-sizing: border-box;
+    // padding: 10px 15px;
+    padding-right: 30px; // Adjusted for the dropdown icon space
+    padding-left: 15px;
+    border-radius: 60px;
+    color: $red;
+    font-weight: 100;
+    letter-spacing: 0.01em;
+    position: relative;
+    z-index: 1;
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23adff2f" d="M2 0L0 2h4L2 0zM2 5L0 3h4L2 5z"></path></svg>');
+    background-size: 2.5% 50%;
+    background-repeat: no-repeat;
+    background-position: right 10px center; // Adjust the position as needed
+
+    &:focus {
+        outline: none;
+        background: $red;
+        background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23ffffff" d="M2 0L0 2h4L2 0zM2 5L0 3h4L2 5z"></path></svg>');
+        background-size: 2.5% 50%;
+        background-repeat: no-repeat;
+        background-position: right 10px center; 
+        color: white;
+        margin-top: 30px;
+    }
+
+    &:valid {
+        margin-top: 30px;
+    }
+
+    &:focus ~ label {
+        transform: translateY(-35px);
+    }
+
+    &:valid ~ label {
+        text-transform: uppercase;
+        font-style: italic;
+        transform: translateY(-35px) scale(0.6);
+    }
+}

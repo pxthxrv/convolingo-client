@@ -1,0 +1,15 @@
+@import "../../styles/partials/mixins";
+
+.header__title {
+    color: white;
+    font-family: "Gloria Hallelujah", cursive;
+    font-family: "Great Vibes", cursive;
+    font-family: "Sue Ellen Francisco", cursive;
+    // font-family: "Reanie Beanie", cursive;
+
+
+    padding: 1.6rem;
+    @include flex-col;
+    width: 100%;
+    text-align: center;
+}
