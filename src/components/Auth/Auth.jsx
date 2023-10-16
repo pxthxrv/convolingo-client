@@ -49,8 +49,8 @@ export default function Auth({ setIsLoggedIn, setUser, setUserId }) {
         setUser(username);
         const userID = response.data.user.user_id;
         setUserId(userID)
-        // navigate(`/home/${userID}`); // if login successful navigate to user home
-        navigate(`/getting-started/${userID}`); // if account creation successfull, navigate 
+        navigate(`/home/${userID}`); // if login successful navigate to user home
+        // navigate(`/getting-started/${userID}`); // if account creation successfull, navigate 
       }
       if (response.status === 201) {
         setIsLoggedIn(true);

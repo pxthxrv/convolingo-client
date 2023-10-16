@@ -1,20 +1,65 @@
 @import "../../styles/partials/mixins";
 
-.glass-chat {
-    margin: 0 1.6rem;
-    padding: 1.6rem;
+.discover-page {
 
-    @include tablet {
-        margin: 3.2rem;
-
-        @include desktop {
-            // margin: 15.2rem;
-            // margin: 0;
-            @include flex-col;
-            justify-content: center;
-            margin: 3.2rem auto;
-            max-width: 1080px;
-
-        }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 0 0 20px;
+  
+    h2 {
+      margin-bottom: 20px;
+      font-size: 2.5em;
+      color: #333;
     }
-}
+  
+    .card-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 600px;
+    //   gap: 32px;
+  
+      @include tablet {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  
+    .btn-flash,
+    .btn-chat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 250px;
+      height: 150px;
+      margin: 10px;
+      border: none;
+      border-radius: 20px;
+      font-size: 1.5em;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+      outline: none;
+    //   background-color: #f2f2f2;
+      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  
+      &:hover {
+        background-color: #ddd;
+        transform: translateY(-5px);
+      }
+  
+      &:active {
+        transform: translateY(-2px);
+      }
+  
+      p {
+        padding: 1.6rem;
+        text-justify: newspaper;
+      }
+      
+    }
+  }
