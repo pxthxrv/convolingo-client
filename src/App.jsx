@@ -29,11 +29,14 @@ export default function App() {
         // console.log(response);
         if (response.data.isAuthenticated) {
           setIsLoggedIn(true);
+          console.log(response.data)
           setUser(response.data.user);
           setUserId(response.data.user.user_id);
           console.log(response);
+          // setIsLoading(false);
         } else {
           setIsLoggedIn(false);
+          // setIsLoading(false);
         }
       })
       .catch((error) => {
@@ -75,7 +78,7 @@ export default function App() {
           {/* After signing up go to Getting Started | Account Details */}
           <Route
             path="/getting-started/:userId"
-            element={<GettingStartedPage />}
+            element={<GettingStartedPage setUser={setUser} />}
           />
           {/* Go to Home Page to See FlashCard, Chat, User Info, and Dicitonary */}
           <Route
@@ -91,7 +94,7 @@ export default function App() {
             }
           />
            <Route path="/flashcards" element={<FlashCardsPage />} />
-          <Route path="/chat/:userId" element={<ChatPage />} />
+          <Route path="/chat/:userId" element={<ChatPage user={user}/>} />
           {/* <Route path="/home/:userId" element={<HomePage />} /> */}
         </Routes>
         <Footer setIsLoggedIn={setIsLoggedIn} />

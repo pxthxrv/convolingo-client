@@ -13,16 +13,11 @@ export default function HomePage({ user }) {
     navigate(`/chat/${user.id}`);
   }
 
-  if (!user || !user.first_name || !user.last_name) {
-    return <div>Loading user data...</div>;
-  }
-
   return (
     <div className="discover-page">
     <h2>Discover</h2>
-    
     <div className="card-container">
-      <button className="glass btn-flash" onClick={navigateToFlashcards}>
+      <button className="btn-flash" onClick={navigateToFlashcards}>
         Flash Cards
         <h5>Sub-heading for Flash Cards</h5>
         <p>Some descriptive text about flashcards.</p>

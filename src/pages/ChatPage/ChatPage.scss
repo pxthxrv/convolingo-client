@@ -1,20 +1,27 @@
 @import "../../styles/partials/mixins";
 
-.glass-chat {
+.chat {
+    display: flex;
+    justify-content: center;
+
+  &__glass {
+    // @include flex-col;
     margin: 0 1.6rem;
     padding: 1.6rem;
 
+    width: 500px;
+
     @include tablet {
-        margin: 3.2rem;
+      margin: 3.2rem;
 
-        @include desktop {
-            // margin: 15.2rem;
-            // margin: 0;
-            @include flex-col;
-            justify-content: center;
-            margin: 3.2rem auto;
-            max-width: 1080px;
-
-        }
+      @include desktop {
+        // margin: 15.2rem;
+        // margin: 0;
+        @include flex-col;
+        justify-content: center;
+        margin: 3.2rem auto;
+        max-width: 1080px;
+      }
     }
+  }
 }

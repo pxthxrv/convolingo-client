@@ -9,6 +9,7 @@ export default function Auth({ setIsLoggedIn, setUser, setUserId }) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [feedback, setFeedback] = useState(""); // For server response messages
+ 
   const navigate = useNavigate();
   const { mode } = useParams();
 
@@ -44,22 +45,24 @@ export default function Auth({ setIsLoggedIn, setUser, setUserId }) {
       const response = await axios.post(url, { username, password });
       setFeedback(response.data.message);
       if (response.status === 200) {
-        console.log(response.data)
+       const user = await axios.get(`${API_URL}/auth/check`)
         setIsLoggedIn(true);
-        setUser(username);
-        const userID = response.data.user.user_id;
-        setUserId(userID)
-        navigate(`/home/${userID}`); // if login successful navigate to user home
+        setUser(user.data.user);
+        const userId = response.data.user.user_id;
+        setUserId(userId)
+        navigate(`/home/${userId}`); // if login successful navigate to user home
         // navigate(`/getting-started/${userID}`); // if account creation successfull, navigate 
       }
       if (response.status === 201) {
+        console.log("if log in: ", response.data)
         setIsLoggedIn(true);
-        setUser(username);
-        const userID = response.data.user_id;
-        setUserId(userID)
-        navigate(`/getting-started/${userID}`); // if account creation successfull, navigate to getting-started
+        // setUser(username);
+        const userId = response.data.user_id;
+        setUserId(userId)
+        navigate(`/getting-started/${userId}`); // if account creation successfull, navigate to getting-started
       }
     } catch (err) {
+      console.error(err);
       setFeedback(err.response?.data?.error || "An error occurred!");
     }
   };

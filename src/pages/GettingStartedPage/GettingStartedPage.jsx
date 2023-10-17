@@ -1,9 +1,9 @@
 import AccountSettings from "../../components/Account/AccountSettings";
 
-export default function GettingStartedPage() {
+export default function GettingStartedPage({ setUser }) {
   return (
     <div className="glass">
-      <AccountSettings />
+      <AccountSettings setUser={setUser} />
     </div>
   );
 }

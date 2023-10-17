@@ -5,7 +5,7 @@ import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5050";
 
-export default function AccountSettings() {
+export default function AccountSettings({ setUser }) {
   const { userId } = useParams();
   const navigate = useNavigate();
   const [allLanguages, setAllLanguages] = useState([]);
@@ -52,8 +52,6 @@ export default function AccountSettings() {
       .get(`${API_URL}/languages`)
       .then((response) => {
         setAllLanguages(response.data);
-        console.log(response.data);
-        console.log(userId);
       })
       .catch(console.error);
   }, []);
@@ -81,7 +79,16 @@ export default function AccountSettings() {
       .patch(`${API_URL}/user/update/${userId}`, updatedUserData)
       .then((response) => {
         console.log("Success:", response.data.message);
+        
+        // added this line
+        return axios.get(`${API_URL}/user/${userId}`);
+        // navigate(`/home/${userId}`);
+      })
+      .then((response) => {
+        const updatedUserData = response.data;
+        setUser(updatedUserData);
         navigate(`/home/${userId}`);
+
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -253,29 +260,6 @@ export default function AccountSettings() {
               </label>
             </div>
           </div>
-
-          {/* <label className="label" htmlFor="languageToStudySelect">
-          Language to Study
-        </label>
-        <select
-          id="languageToStudySelect"
-          name="languageToStudySelect"
-          value={selectedLanguageToStudy}
-          onChange={handleLanguageToStudyChange}
-          className={`input select-item ${
-            selectedLanguageToStudyError ? "error" : ""
-          }`}
-        >
-          <option value="">Please select</option>
-          {allLanguages.map((language) => (
-            <option key={language.id} value={language.display_name}>
-              {language.display_name}
-            </option>
-          ))}
-        </select>
-        {selectedLanguageToStudyError && (
-          <div className="error-message">{selectedLanguageToStudyError}</div>
-        )} */}
         </div>
 
         <button className="btn-submit" type="submit">
