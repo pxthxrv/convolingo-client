@@ -1,4 +1,4 @@
-const chatGeneratedWords = [
+const words = [
     {word: "Ich", translation: "I", part_of_speech: "Pronoun", gender: "", pronunciation: "[ɪç]", used_in_a_sentence: "Ich heiße Anna.", stem: "Ich", cefr: "A1.1"},
     {word: "und", translation: "and", part_of_speech: "Conjunction", gender: "", pronunciation: "[ʊnt]", used_in_a_sentence: "Ich habe Äpfel und Bananen.", stem: "und", cefr: "A1.1"},
     {word: "ja", translation: "yes", part_of_speech: "Interjection", gender: "", pronunciation: "[ja:]", used_in_a_sentence: "Ja, das stimmt.", stem: "ja", cefr: "A1.1"},
@@ -20,3 +20,5 @@ const chatGeneratedWords = [
     {word: "Taschenlampe", translation: "flashlight", part_of_speech: "Noun", gender: "f", pronunciation: "['taʃənˌlampə]", used_in_a_sentence: "Ich brauche meine Taschenlampe für den Campingausflug.", stem: "Taschenlamp", cefr: "A1.1"},
     {word: "Sonnenbrille", translation: "sunglasses", part_of_speech: "Noun", gender: "f", pronunciation: "['zɔnənˌbrɪlə]", used_in_a_sentence: "Ich trage meine Sonnenbrille im Sommer.", stem: "Sonnenbrill", cefr: "A1.1"}
 ];
+
+export default words;

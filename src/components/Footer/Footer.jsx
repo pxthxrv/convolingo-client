@@ -1,3 +1,4 @@
+import "./Footer.scss";
 import { API_URL } from "../../utils/constants";
 import axios from 'axios';
 
@@ -19,8 +20,8 @@ export default function Footer(props) {
   };
 
   return (
-    <>
-      <button onClick={handleLogout}>Logout</button>
-    </>
+    <div className="footer">
+      <button className="btn-logout" onClick={handleLogout}>Logout</button>
+    </div>
   );
 }

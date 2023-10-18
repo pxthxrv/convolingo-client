@@ -1,0 +1,83 @@
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/mixins-comps";
+@import "../../styles/partials/variables";
+
+// Buttons
+.btn-login {
+  @include btn-3d;
+
+  // @include btn-bump;
+  width: 100px;
+}
+
+.auth-page {
+  @include flex-col;
+}
+
+.btn-toggle-login {
+  @include btn-text;
+  @include flex-col;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.link-style {
+  text-decoration: underline;
+  // text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+  line-height: 1rem;
+}
+
+.auth-input{
+  @include input-1;
+}
+
+.login-container {
+  @include flex-col;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 80px - 80px);
+}
+
+.login-card {
+  @include flex-col;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  width: 300px;
+  padding: 2rem 0 2rem;
+  margin: 0 auto;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-sizing: border-box;
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
+
+  &__title {
+    margin: 15px 0 25px;
+    font-family: $font-text;
+    font-size: 2rem;
+    font-weight: 500;
+    // letter-spacing: 0.1em;
+  }
+
+  &__form {
+   @include flex-col;
+    align-items: center;
+    width: 100%;
+    gap: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+errors .login-card p {
+  font-size: 3px;
+  color: whitesmoke;
+  margin-top: 15px;
+}

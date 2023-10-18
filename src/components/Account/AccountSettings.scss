@@ -1,61 +1,48 @@
 @import "../../styles/partials/mixins";
+@import "../../styles/partials/mixins-comps";
+@import "../../styles/partials/variables";
 
 // $red: rgba(255, 74, 86, 1);
-$red: #adff2f;
+
+// handleSVG template string
+$colorString: str-slice(inspect($highlight), 2, 7); 
+
+@mixin handleWidth() {
+  width: 100%;
+  min-width: 25rem;
+  // max-width: 40rem;
+
+}
 
 .transition {
   transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
 }
 
+.btn-submit {
+  @include btn-highlight;
+  margin-top: 40px;
+  width: 100%;
+}
+
 .form {
   @include flex-col;
-  margin: 1.6rem;
+  margin: 3.2rem 3.2rem;
 
   &__title {
     font-weight: 100;
     letter-spacing: 0.01em;
-    margin-top: 15px;
-    margin-left: 15px;
-  }
-
-
-
-
-
-  // button {
-   
-  // }
-}
-
-.btn-submit {
-  @include flex-col;
-  @extend .transition;
-  max-width: 200px;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  margin-top: 35px;
-  border: 1px solid $red;
-  line-height: 0;
-  font-size: 17px;
-  box-sizing: border-box;
-  padding: 20px 15px;
-  border-radius: 60px;
-  color: $red;
-  font-weight: 100;
-  letter-spacing: 0.01em;
-  position: relative;
-  z-index: 1;
-
-  &:hover,
-  &:focus {
-    color: white;
-    background-color: $red;
+    margin-bottom: 0.8rem;
+    // margin-top: 15px;
+    // margin-left: 15px;
   }
 }
 
 .form-container {
   @include flex-col;
+  justify-content: center;
+  align-content: center;
+
+
   @include tablet {
     @include flex-row;
   }
@@ -63,6 +50,7 @@ $red: #adff2f;
   &__left {
     @include flex-col;
     @include tablet {
+      align-items: center;
       width:50%;
     }
   }
@@ -70,16 +58,21 @@ $red: #adff2f;
   &__right {
     @include flex-col;
     @include tablet {
+      align-items: center;
       width:50%;
     }
   }
 
 }
 
+
+
+
+
+
+
+
 form {
-
-
-
   .question {
     position: relative;
     padding: 10px 0;
@@ -95,7 +88,7 @@ form {
     label {
       @extend .transition;
       transform-origin: left center;
-      color: $red;
+      color: $highlight;
       font-weight: 100;
       letter-spacing: 0.01em;
       font-size: 17px;
@@ -108,29 +101,40 @@ form {
       pointer-events: none;
     }
 
+
     // TEXT Settings
     input[type="text"] {
       @extend .transition;
-      width: 250px;
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus,
+      &:-webkit-autofill:active {
+          -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+          transition: background-color 5000s ease-in-out 0s;
+      }
+
+      @include handleWidth;
       appearance: none;
       background-color: transparent; // Changed 'none' to 'transparent'
-      border: 1px solid $red;
+      border: 1px solid $highlight;
       line-height: 0;
       font-size: 17px;
 
       box-sizing: border-box;
       padding: 10px 15px;
       border-radius: 60px;
-      color: $red;
+      color: $highlight;
       font-weight: 100;
       letter-spacing: 0.01em;
       position: relative;
       z-index: 1;
 
+    
+
       &:focus {
         outline: none;
-        background: $red;
-        color: white;
+        background: $highlight;
+        color: $white;
         margin-top: 30px;
       }
 
@@ -165,20 +169,20 @@ form {
     }
 
     input[type="date"] {
+      width: 100%;
       @extend .transition;
       background: transparent;
       appearance: none;
       -webkit-appearance: none;
       -moz-appearance: none;
       z-index: 1;
-      width: 250px;
       appearance: none;
       background-color: transparent; // Changed 'none' to 'transparent'
-      border: 1px solid $red;
+      border: 1px solid $highlight;
       font-size: 17px;
       padding: 10px 15px;
       border-radius: 60px;
-      color: $red;
+      color: $highlight;
       font-weight: 100;
       letter-spacing: 0.01em;
       z-index: 1;
@@ -186,8 +190,8 @@ form {
 
       &:focus {
         outline: none;
-        background: $red;
-        color: white;
+        background: $highlight;
+        color: $white;
         margin-top: 30px;
       }
 
@@ -208,7 +212,7 @@ form {
 
     input[type="date"]:valid,
     input[type="date"]:valid::-webkit-datetime-edit-text {
-      color: $red; /* For webkit browsers */
+      color: $highlight; /* For webkit browsers */
     }
 
     input[type="date"]:focus::-webkit-datetime-edit-text,
@@ -219,18 +223,14 @@ form {
       color: white; /* For webkit browsers when focused */
     }
 
-
-
-
-
-
     .select-item {
       @extend .transition;
+      display:flex;
       height: 42px;
-      width: 250px;
+      width: 100%;
       appearance: none;
       background-color: transparent;
-      border: 1px solid $red;
+      border: 1px solid $highlight;
       // line-height: 0;
       font-size: 17px;
       box-sizing: border-box;
@@ -238,24 +238,24 @@ form {
       padding-right: 30px; // Adjusted for the dropdown icon space
       padding-left: 15px;
       border-radius: 60px;
-      color: $red;
+      color: $highlight;
       font-weight: 100;
       letter-spacing: 0.01em;
       position: relative;
       z-index: 1;
-      background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23adff2f" d="M2 0L0 2h4L2 0zM2 5L0 3h4L2 5z"></path></svg>');
+      background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23#{$colorString}" d="M2 0L0 2h4L2 0zM2 5L0 3h4L2 5z"></path></svg>');
       background-size: 2.5% 50%;
       background-repeat: no-repeat;
       background-position: right 10px center; // Adjust the position as needed
   
       &:focus {
           outline: none;
-          background: $red;
+          background: $highlight;
           background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23ffffff" d="M2 0L0 2h4L2 0zM2 5L0 3h4L2 5z"></path></svg>');
           background-size: 2.5% 50%;
           background-repeat: no-repeat;
           background-position: right 10px center; 
-          color: white;
+          color: $white;
           margin-top: 30px;
       }
   
@@ -274,19 +274,6 @@ form {
           transform: translateY(-35px) scale(0.6);
       }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-    
   }
 }
 

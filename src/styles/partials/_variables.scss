@@ -2,16 +2,26 @@
 $tablet-breakpoint: 768px;
 $desktop-breakpoint: 1280px;
 
+// Title
+$font-logo: 'Sue Ellen Francisco', cursive;
+// Chat
+$font-chat: 'DM Mono', monospace;
+
+// Titles
+$font-title: 'Forum', sans-serif;
+// primary-text
+$font-text: 'Work Sans', sans-serif;
+
+// Highlight
+$highlight: #adff2f;
+$highlight: #48b5b0;
+
+
 // Primary Colors
-$brainflix-black: #323232;
-$brainflix-blue: #0095FF;
-$silver: #AFAFAF;
 $white: #FFFFFF;
-// Secondary Colors
-$brainflix-darkblack: #000000;
-$brainflix-darkblue: #0065AD;
-$mercury: #E1E1E1;
-$alabaster: #FAFAFA;
+$white-75: rgba(255, 255, 255, 0.75);
+$white-50: rgba(255, 255, 255, 0.5);
+$white-50: rgba(255, 255, 255, 0.25);
 
 // STARBURST COLORS (3):
 // #F5BC91
@@ -28,15 +38,9 @@ $alabaster: #FAFAFA;
 // #EB9474
 
 
-
-
 // background images
-$background-img: url(./assets/background-images/light_faded_background_85547_1680x1050.jpg); // Light beige-blue Background
-// $background-img: url(./assets/background-images/gradient_abstraction_pink_256766_1680x1050.jpg); // Light purple pink gradient, vertical
-// $background-img: url(./assets/background-images/spot_sky_lines_85072_1680x1050.jpg); // beige-blue vertical high-contrast gradient (0.2 black overlay)
-// $background-img: url(./assets/background-images/black-texture-burst.jpg);
-// $background-img: url(./assets/background-images/corrugated-paper.jpg); // too much texture
+// $background-img: url(./assets/background-images/starburst-v1.jpeg); 
+// $background-img: url(./assets/background-images/starburst-v2.jpeg); 
+// $background-img: url(./assets/background-images/starburst-v3.jpeg); 
 
-$background-img: url(./assets/background-images/starburst.jpg); // definetely a contender ! w/ 0.1 black overlay
-// $background-img: url(./assets/background-images/light-brushed-metal.jpg); // would be great with slightly more transparent glass
- 
+$background-img: url(./assets/background-images/starburst.jpg);

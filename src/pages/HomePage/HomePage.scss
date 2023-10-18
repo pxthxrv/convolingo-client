@@ -1,65 +1,196 @@
 @import "../../styles/partials/mixins";
 
-.discover-page {
+.discover {
+  @include flex-col;
+  @include center-xy;
+}
 
+.central-container {
+  // @include flex-col;
+  @include flex-row;
+  align-items: stretch;
+  gap: 2rem;
+  max-width: 600px;
+  margin: 3.2rem;
+
+  .container-1 {
+    @include flex-col;
+    gap: 2em;
+    width: 50%;
+  }
+
+  .container-2 {
+    @include flex-col;
+    gap: 2em;
+    width: 50%;
+    flex: 1; // this ensures that .container-2 takes up the remaining space in .central-container
+    align-items: stretch;
+  }
+}
+
+.card-feature {
+  height: 100px;
+}
+
+.card {
+  @include flex-col;
+  flex: 1;
+  padding: 1.7rem;
+  border-radius: 1em;
+  gap: 0.5em;
+
+  position: relative;
+  border-left: none;
+  border-right: solid 3px #6d687578;
+  border-bottom: solid 1px #6d687575;
+  box-shadow: 5px 0px 10px #00000030;
+  transition: 0.5s ease-in-out;
+}
+
+.card:hover {
+  border-right: none;
+  border-left: solid 3px #6d6875;
+  box-shadow: -5px 0px 10px #00000030;
+
+}
+
+.card-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #6d6875;
+  // color: $white;
+  align-items: center;
+  // gap: 0.5em;
+}
+
+.card-block {
+  @include flex-col;
+  font-weight: 300;
+  color: #6d6875;
+  gap: 0.5em;
+  padding: 1rem 0;
+
+  &__front-text {
+    font-size: 1rem;
+    line-height: 1.3rem;
+    padding-right: 5rem;
+  }
+
+  &__footer {
+    color: $white-75;
+  }
+}
+
+.card-options {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 0.8rem 1rem 1rem 0.8rem;
+  background-color: #6d6875c1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // fill: #ffcdb2;
+
+  // padding: 1em;
+  gap: 1em;
+  opacity: 0;
+  transition: 0.5s;
+  @include glass-effect;
+  border-radius: 0.8rem 1rem 1rem 0.8rem;
+
+  // align-items: flex-start;
+  // justify-content: flex-start;
+
+  &__back-text {
+    color: $white-75;
+    text-align: center;
+    padding: 1.4rem;
+    line-height: 2.4rem;
+    font-size: 1.8rem;
+  }
+}
+
+.card:hover .card-options {
+  opacity: 1;
+  // transform: translate(50%) rotate(0deg);
+}
+
+.user-info {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+
+  .column-keys,
+  .column-values {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    padding: 0 0 20px;
+    gap: 10px;
+  }
+
+  .column-keys {
+    width: 30%;
+  }
+
+  .info-key {
+    line-height: 1.2;
+    font-weight: 600;
+  }
+
+  .info-value {
+    line-height: 1.2;
+  }
+}
+
+.daily-word-sent {
+  @include flex-col;
+  @include center-xy;
   
-    h2 {
-      margin-bottom: 20px;
-      font-size: 2.5em;
-      color: #333;
+  height: 80px;
+
+  &__text {
+ 
+    font-family: "Tenor Sans";
+    font-size: 1.8rem;
+    color: $white-75;
+    text-align: center;
+  }
+}
+
+.daily-word-card {
+  padding-bottom: 0;
+  &__title {
+    font-size: 2.4rem;
+  }
+
+  .word-info {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+
+    .info-key {
+      line-height: 1;
+      font-weight: 600;
+      // width:
     }
-  
-    .card-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      max-width: 600px;
-    //   gap: 32px;
-  
-      @include tablet {
-        flex-direction: row;
-        justify-content: space-between;
-      }
+
+    .column-keys,
+    .column-values {
+      @include flex-col;
+      width: 50%;
+      gap: 10px;
     }
-  
-    .btn-flash,
-    .btn-chat {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 250px;
-      height: 150px;
-      margin: 10px;
-      border: none;
-      border-radius: 20px;
-      font-size: 1.5em;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-      cursor: pointer;
-      outline: none;
-    //   background-color: #f2f2f2;
-      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-  
-      &:hover {
-        background-color: #ddd;
-        transform: translateY(-5px);
-      }
-  
-      &:active {
-        transform: translateY(-2px);
-      }
-  
-      p {
-        padding: 1.6rem;
-        text-justify: newspaper;
-      }
-      
+
+    // .column-keys {
+    //   width: 40%;
+    // }
+
+    .info-value {
+      line-height: 1;
     }
   }
+}

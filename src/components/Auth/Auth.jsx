@@ -1,3 +1,5 @@
+import "./Auth.scss";
+
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -8,8 +10,8 @@ export default function Auth({ setIsLoggedIn, setUser, setUserId }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [feedback, setFeedback] = useState(""); // For server response messages
- 
+  const [feedback, setFeedback] = useState("");
+
   const navigate = useNavigate();
   const { mode } = useParams();
 
@@ -45,20 +47,20 @@ export default function Auth({ setIsLoggedIn, setUser, setUserId }) {
       const response = await axios.post(url, { username, password });
       setFeedback(response.data.message);
       if (response.status === 200) {
-       const user = await axios.get(`${API_URL}/auth/check`)
+        const user = await axios.get(`${API_URL}/auth/check`);
         setIsLoggedIn(true);
         setUser(user.data.user);
         const userId = response.data.user.user_id;
-        setUserId(userId)
+        setUserId(userId);
         navigate(`/home/${userId}`); // if login successful navigate to user home
-        // navigate(`/getting-started/${userID}`); // if account creation successfull, navigate 
+        // navigate(`/getting-started/${userID}`); // if account creation successfull, navigate
       }
       if (response.status === 201) {
-        console.log("if log in: ", response.data)
+        console.log("if log in: ", response.data);
         setIsLoggedIn(true);
         // setUser(username);
         const userId = response.data.user_id;
-        setUserId(userId)
+        setUserId(userId);
         navigate(`/getting-started/${userId}`); // if account creation successfull, navigate to getting-started
       }
     } catch (err) {
@@ -68,37 +70,59 @@ export default function Auth({ setIsLoggedIn, setUser, setUserId }) {
   };
 
   return (
-    <div>
-      <h2>{isLoginMode ? "Log In" : "Sign Up"}</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {!isLoginMode && (
+    <>
+    <div className="login-container">
+      <div className="login-card">
+        <h2 className="login-card__title">
+          {isLoginMode ? "Welcome Back" : "Sign Up"}
+        </h2>
+        <form className="login-card__form" onSubmit={handleSubmit}>
           <input
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            className="auth-input"
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
-        )}
-        <button type="submit">{isLoginMode ? "Login" : "Sign Up"}</button>
-      </form>
-      {feedback && <p>{feedback}</p>}
-      <button onClick={toggleLoginMode}>
-        {isLoginMode
-          ? "Don't have an account? Sign Up Here"
-          : "Already have an account? Log In Here"}
-      </button>
+          <input
+            className="auth-input"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {!isLoginMode && (
+            <input
+              className="auth-input"
+              type="password"
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          )}
+
+          <button className="btn-login" type="submit">
+            {isLoginMode ? "LOGIN" : "Sign Up"}
+          </button>
+        </form>
+
+        <button className="btn-toggle-login" onClick={toggleLoginMode}>
+          {isLoginMode ? (
+            <>
+              <h5>Don't have an account?</h5>
+              <h5 className="link-style">Sign Up Here</h5>
+            </>
+          ) : (
+            <>
+             <h5>Already have an account?</h5>
+              <h5 className="link-style">Log In Here</h5>
+            </>
+          )}
+        </button>
+      </div>
+
     </div>
+    {feedback && <p>{feedback}</p>}
+    </>
   );
 }

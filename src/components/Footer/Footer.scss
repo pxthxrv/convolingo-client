@@ -1,0 +1,14 @@
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/mixins-comps";
+
+.footer {
+  @include flex-col;
+  align-items: center;
+  justify-content: center;
+
+  height: 8rem;
+}
+
+.btn-logout {
+  @include btn-text;
+}

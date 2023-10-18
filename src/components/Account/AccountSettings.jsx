@@ -79,7 +79,7 @@ export default function AccountSettings({ setUser }) {
       .patch(`${API_URL}/user/update/${userId}`, updatedUserData)
       .then((response) => {
         console.log("Success:", response.data.message);
-        
+
         // added this line
         return axios.get(`${API_URL}/user/${userId}`);
         // navigate(`/home/${userId}`);
@@ -88,7 +88,6 @@ export default function AccountSettings({ setUser }) {
         const updatedUserData = response.data;
         setUser(updatedUserData);
         navigate(`/home/${userId}`);
-
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -109,7 +108,7 @@ export default function AccountSettings({ setUser }) {
                 type="text"
                 required
                 onChange={handleInputChange}
-                value={userData.username  || ""}
+                value={userData.username || ""}
               />
               <label htmlFor="username">{"USERNAME"}</label>
             </div>
@@ -122,7 +121,7 @@ export default function AccountSettings({ setUser }) {
                 type="text"
                 required
                 onChange={handleInputChange}
-                value={userData.email  || ""}
+                value={userData.email || ""}
               />
               <label htmlFor="email">{"EMAIL"}</label>
             </div>
@@ -135,7 +134,7 @@ export default function AccountSettings({ setUser }) {
                 type="text"
                 required
                 onChange={handleInputChange}
-                value={userData.first_name  || ""}
+                value={userData.first_name || ""}
               />
               <label htmlFor="first_name">{"FIRST NAME"}</label>
             </div>
@@ -148,7 +147,7 @@ export default function AccountSettings({ setUser }) {
                 type="text"
                 required
                 onChange={handleInputChange}
-                value={userData.last_name  || ""}
+                value={userData.last_name || ""}
               />
               <label htmlFor="last_name">{"LAST NAME"}</label>
             </div>
@@ -161,7 +160,7 @@ export default function AccountSettings({ setUser }) {
                 type="date"
                 required
                 onChange={handleInputChange}
-                value={userData.date_of_birth  || ""}
+                value={userData.date_of_birth || ""}
               />
               <label htmlFor="date_of_birth">Date of Birth</label>
             </div>
@@ -245,7 +244,7 @@ export default function AccountSettings({ setUser }) {
               <select
                 id="time_per_day"
                 name="time_per_day"
-                value={userData.time_per_day  || ""}
+                value={userData.time_per_day || ""}
                 onChange={handleInputChange}
                 className="input select-item"
               >
@@ -258,13 +257,12 @@ export default function AccountSettings({ setUser }) {
               <label className="label" htmlFor="time_per_day">
                 TIME PER DAY
               </label>
+              <button className="btn-submit" type="submit">
+                Submit
+              </button>
             </div>
           </div>
         </div>
-
-        <button className="btn-submit" type="submit">
-          Submit
-        </button>
       </form>
     </div>
   );
