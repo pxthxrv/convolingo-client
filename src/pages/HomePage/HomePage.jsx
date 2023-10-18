@@ -1,7 +1,7 @@
 import "./HomePage.scss";
 import { useNavigate } from "react-router-dom";
-
 import words from '../../data/german/words';
+
 const randomWordId = words.length -1;
 
 export default function HomePage({ user }) {
@@ -14,6 +14,10 @@ export default function HomePage({ user }) {
   const navigateToChat = () => {
     navigate(`/chat/${user.id}`);
   };
+
+
+
+  
 
   return (
     <div className="discover">
