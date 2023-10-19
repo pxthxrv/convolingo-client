@@ -32,6 +32,7 @@
 
 .auth-input{
   @include input-1;
+  max-width: 190px;
 }
 
 .login-container {
@@ -40,7 +41,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 80px - 80px);
+  min-height: calc(100vh - 14rem - 8rem);
 }
 
 .login-card {
@@ -76,8 +77,10 @@
   }
 }
 
-errors .login-card p {
-  font-size: 3px;
+.display-error {
+  position: relative;
+  top: 20px;
+  font-size: 12px;
   color: whitesmoke;
-  margin-top: 15px;
+  // margin-top: 15px;
 }

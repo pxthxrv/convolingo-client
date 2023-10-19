@@ -5,8 +5,9 @@
   @include flex-col;
   align-items: center;
   justify-content: center;
-
   height: 8rem;
+  // position: relative;
+  // bottom: 20px;
 }
 
 .btn-logout {

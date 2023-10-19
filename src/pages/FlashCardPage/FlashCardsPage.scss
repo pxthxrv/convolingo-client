@@ -1,74 +1,158 @@
+@import "../../styles/partials/variables";
+@import "../../styles/partials/mixins";
 
+.flash-submit {
+  @include flex-col;
+  margin: 0 auto;
+}
 
 .flash-card-container {
+  @include flex-col;
+  @include center-xy;
+
+  .flash-card {
+    @include flex-col;
+    @include center-xy;
+    min-height: 200px;
+    min-width: 350px;
+    font-size: 4rem;
+
+    position: relative;
+    flex: 1;
+    padding: 1.7rem;
+    border-radius: 2rem;
+    gap: 0.5em;
+
+    position: relative;
+    border-left: none;
+    border-right: solid 3px $flash-color-semi-trans;
+    border-bottom: solid 1px $flash-color-semi-trans;
+    box-shadow: 5px 0px 10px $shadow-color;
+    transition: 0.5s ease-in-out;
+
+    &:hover {
+      border-right: none;
+      border-left: solid 3px $flash-color;
+      box-shadow: -5px 0px 10px $shadow-color;
+
+      opacity: 1;
+    }
+    
+    &.green { // Success color
+      background-color: rgba(37, 220, 37, 0.333);
+    }
+    
+    &.red { // Failure color
+        @include glass-effect;
+      background-color: rgba(247, 105, 105, 0.507);
+    }
+  }
+
+  .flash-card-input-form {
+    @include flex-col;
+    gap: 0.5em;
+    padding: 1rem 0;
+    font-weight: 300;
+    color: $flash-color;
+  }
+
+//   ADD HERE
+  &:hover .flash-card {
+    // filter: brightness(0.8); // Dim the flash card content when hovering
+  }
+}
+
+.flash-card--corect-answer {
+    font-size: 4rem;
+}
+
+.flash-card--options {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 0.8rem 2rem 2rem 0.8rem; 
+    background-color: $flash-color-semi-trans;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    position: relative;
-}
-
-.flash-card-input-form {
-    display: none;  
-    flex-direction: column;
-    align-items: center;
-    position: absolute;  
-    top: 100%;
-    width: 100%; 
-
-    background-color: transparent;
-
+    gap: 1em;
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0s ease-in-out 1s; 
-}
+    transition: 0.5s;
+    @include glass-effect;
 
-.flash-card-container:hover .flash-card-input-form {
-    display: flex;  
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    gap: 1.6rem; 
 
-    opacity: 1;
-    visibility: visible;
-    transition-delay: 0s;
-}
-
-.flash-card {
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    width: 150px;
-    text-align: center;
-    position: relative;
-    transition: background-color 0.3s;
-    margin-bottom: 10px;
-    background: rgba(255, 255, 255, 0.13);
-border-radius: 12px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(5.8px);
--webkit-backdrop-filter: blur(5.8px);
-border: 1px solid rgba(255, 255, 255, 0.26);
-
-    form {
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
+    &:hover {
+        opacity:1;
     }
 
-    &.green {
-        background: rgba(161, 227, 178, 0.126);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(5.8px);
--webkit-backdrop-filter: blur(5.8px);
-border: 1px solid rgba(0, 248, 78, 0.218);
-    }
+    .flash-card-detail {
+    
+        color: $white-75;
+        text-align: center;
+        // padding: 1.4rem;
+        // line-height: 2.4rem;
+        font-size: 1.8rem;
+        z-index: 1;
+        // padding: 4rem 0;
 
-    &.red {
-        background-color: rgba(248, 215, 218,0.126);
-        // background: rgba(161, 227, 178, 0.126);
-        border-radius: 16px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(5.8px);
-        -webkit-backdrop-filter: blur(5.8px);
-        border: 1px solid rgba(248, 29, 0, 0.218);
+      }
+  }
+
+  
+  .results-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%; // Assuming you want to center it in its parent
+    font-size: 1.4rem;
+  
+    .results-title {
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 1rem; // Add some spacing below the title
     }
-}
+  
+    .results-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      
+      .result-item {
+        display: flex;
+        justify-content: space-between;
+        width: 100%; // adjust as per your requirement
+        
+        .foreign-word,
+        .native-word,
+        .answer-status {
+          margin: 0 0.5rem; // evenly space them with margins
+        }
+
+        .answer-status {
+            &.correct {
+              color: rgba(11, 167, 11, 0.548);
+            }
+    
+            &.incorrect {
+              color: rgba(241, 29, 29, 0.381);
+            }
+          }
+      }
+    }
+  
+    .buttons-container {
+      display: flex;
+      justify-content: center; // center the buttons horizontally
+      gap: 0.5rem; // adds a gap between the buttons
+      margin-top: 1rem; // Add some spacing above the button container
+    }
+  }

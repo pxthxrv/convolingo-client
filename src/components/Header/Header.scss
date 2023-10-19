@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: center;
 
-    height: 8rem;
+    height: 14rem;
 
   &__title {
     font-family: "Sue Ellen Francisco", cursive;
@@ -16,4 +16,8 @@
     width: 100%;
     text-align: center;
   }
+}
+
+.logo-home {
+  cursor: pointer;
 }

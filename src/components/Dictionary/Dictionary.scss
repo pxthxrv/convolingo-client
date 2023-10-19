@@ -1,0 +1,59 @@
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/mixins-comps";
+@import "../../styles/partials/variables";
+
+$border-props: 1px solid $white-25;
+
+.dictionary-container {
+display: flex;
+  justify-content: center;
+  align-items: center;
+
+//   height: 100vh;
+}
+
+.dictionary {
+  @include flex-col;
+  @include center-xy;
+  width: 600px;
+  max-width: 600px;
+  flex-direction: column;
+  align-items: center;
+  border: $border-props;
+  border-radius: 1.5rem;
+  padding: 1.6rem;
+  margin: 0 1.6rem;
+  background-color: rgba(255, 255, 255, 0.1); 
+  transition: all 0.3s ease;  
+
+  min-height: 80px;
+
+  &__button {
+    position: absolute;
+    bottom: 1.6rem; // You can adjust this value based on your design.
+    right: 1.6rem; 
+    @include btn-3d;
+    margin-bottom: 1rem;
+    width: 130px;
+  }
+
+  &__response {
+    width: 100%;
+    margin-left: 14px;
+    margin-top: 2px;
+    padding-right: 160px;
+    // border-top: $border-props;
+    // padding-top: 1rem;
+    // margin-top: 1rem;
+
+    &__item {
+      margin-bottom: 0.6rem;
+
+      &--strong {
+        font-weight: bold;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
+

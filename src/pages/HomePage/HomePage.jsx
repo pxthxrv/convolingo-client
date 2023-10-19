@@ -1,11 +1,35 @@
 import "./HomePage.scss";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { getLanguageById } from "../../utils/lookUp";
 import words from "../../data/german/words";
+
 
 const randomWordId = words.length - 1;
 
 export default function HomePage({ user }) {
+  const [language, setLanguage] = useState("");
   const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       const displayLanguageData = await getLanguageById(user.id);
+  //       if (displayLanguageData) {
+  //         setLanguage(displayLanguageData);
+  //         console.log("Fetched and set language:", displayLanguageData);
+  //       } else {
+  //         console.error("Data is undefined or null");
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching language data:", error);
+  //     }
+  //   }
+  //   fetchData();
+  // }, [user.id]);
+
+// const test = getLanguageById("display name", getLanguageById(user.id));
+// console.log(test);
 
   const navigateToFlashcards = () => {
     navigate("/flashcards");
@@ -71,19 +95,18 @@ export default function HomePage({ user }) {
               <span className="info-key">Level:</span>
               <span className="info-key">Commitment:</span>
               {/* <span className="info-key">Email:</span> */}
-              {/* <span className="info-key">UserID:</span> */}
             </div>
             <div className="column-values">
               <span className="info-value">
                 {user.first_name} {user.last_name}
               </span>
-              <span className="info-value">{user.target_language}</span>
+              <span className="info-value">German</span>
               <span className="info-value">{user.cefr}</span>
               <span className="info-value">
                 {user.time_per_day} Minutes per Day
               </span>
-              {/* <span className="info-value">{user.email}</span>
-                    <span className="info-value">{user.id}</span> */}
+              {/* <span className="info-value">{user.email}</span> */}
+                   
             </div>
           </div>
         
@@ -170,70 +193,3 @@ function DailyWord({ word }) {
     </div>
   );
 }
-
-
-// function refactor() {
-//   return (
-//       <div className="container-1">
-//         <div className="card card-feature">
-//           <div className="card-title">VOCABULARY</div>
-//           <div className="card-block">
-//             <p className="card-block__front-text">
-//               Boost your vocabulary now! Dive into our flash card quizzes and
-//               master new words while revisiting familiar ones.
-//             </p>
-//             <h5 className="card-block__footer">Click to get started!</h5>
-//           </div>
-//           <div className="card-options">
-//             <button
-//               className="card-options__back-text"
-//               onClick={navigateToFlashcards}
-//             >
-//               PRACTICE YOUR VOCABULARY!
-//             </button>
-//           </div>
-//         </div>
-//         <div className="card card-feature">
-//           <div className="card-title">CHAT</div>
-//           <div className="card-block">
-//             <p className="card-block__front-text">
-//               Want to speak like a local? Chat with our interactive bot and
-//               sharpen your conversational skills.
-//             </p>
-//             <h5 className="card-block__footer">Click to get started!</h5>
-//           </div>
-//           <div className="card-options">
-//             <button
-//               className="card-options__back-text"
-//               onClick={navigateToFlashcards}
-//             >
-//               LET'S CHAT ABOUT SOMETHING NEW!
-//             </button>
-//           </div>
-//         </div>
-//         <div className="card card-feature">
-//           <div className="card-title">MY DICTIONARY</div>
-//           <div className="card-block">
-//             <p className="card-block__front-text">
-//               Never let a word slip away again! Effortlessly save, organize, and
-//               review your vocabulary with your very own personal dictionary.
-//             </p>
-//             <h5 className="card-block__footer">Click to get started!</h5>
-//           </div>
-//           <div className="card-options">
-//             <button
-//               className="card-options__back-text"
-//               onClick={navigateToFlashcards}
-//             >
-//               WHAT WAS THAT WORD AGAIN?
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-
-//       <div className="container-2">
-
-//       </div>
-//     </div>
-//   );
-// }
