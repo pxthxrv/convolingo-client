@@ -70,7 +70,7 @@ export default function Chat({ user }) {
       console.error("Error response:", error.response.data);
     }
 
-    setInputValue(""); // clesrs when response comes back?
+    setInputValue(""); // clears when response comes back?
   }
 
   return (

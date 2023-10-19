@@ -1,8 +1,11 @@
 import "./Footer.scss";
 import { API_URL } from "../../utils/constants";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 export default function Footer(props) {
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     axios
       .post(`${API_URL}/auth/logout`)
@@ -12,6 +15,7 @@ export default function Footer(props) {
         //   setUser(null);
         //   setUserId("");
           alert("You have been logged out.");
+          navigate(`/`);
         }
       })
       .catch((error) => {

@@ -12,16 +12,42 @@ $font-title: 'Forum', sans-serif;
 // primary-text
 $font-text: 'Work Sans', sans-serif;
 
-// Highlight
-$highlight: #adff2f;
+
+
+
+
+// HIGHLIGHT COLORS
+$neon-highlight: #adff2f;
 $highlight: #48b5b0;
 
+// INPUT FORM COLORS
+$focus-color: #5493ae;
 
-// Primary Colors
+
+
+// STARBURST
+$starburst-1: #F5BC91;
+$starburst-2: #E48477;
+$starburst-3: #D3676A;
+
+// $focus-color: $starburst-3; // Input Starburt
+
+// WHITE OPACITY
 $white: #FFFFFF;
 $white-75: rgba(255, 255, 255, 0.75);
 $white-50: rgba(255, 255, 255, 0.5);
-$white-50: rgba(255, 255, 255, 0.25);
+$white-25: rgba(255, 255, 255, 0.25);
+
+// BLACK
+$black-global: #313740;
+
+
+
+// HOME PAGE COLOR
+$flash-color: #6d6875;
+$flash-color-semi-trans: #6d687575;
+$shadow-color: #00000030;
+
 
 // STARBURST COLORS (3):
 // #F5BC91

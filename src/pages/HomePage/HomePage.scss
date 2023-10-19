@@ -1,196 +1,187 @@
+@import "../../styles/partials/variables";
 @import "../../styles/partials/mixins";
 
 .discover {
   @include flex-col;
   @include center-xy;
-}
 
-.central-container {
-  // @include flex-col;
-  @include flex-row;
-  align-items: stretch;
-  gap: 2rem;
-  max-width: 600px;
-  margin: 3.2rem;
-
-  .container-1 {
-    @include flex-col;
-    gap: 2em;
-    width: 50%;
+  &__central-container {
+    @include flex-row;
+    height: 100%;
+    align-items: stretch;
+    gap: 2rem;
+    max-width: 600px;
+    margin: 3.2rem;
   }
 
-  .container-2 {
+  &__features {
     @include flex-col;
-    gap: 2em;
     width: 50%;
-    flex: 1; // this ensures that .container-2 takes up the remaining space in .central-container
+    height: 100%;
+    gap: 2em; // convert to rem
+
+    flex: 1;
     align-items: stretch;
   }
-}
 
-.card-feature {
-  height: 100px;
-}
-
-.card {
-  @include flex-col;
-  flex: 1;
-  padding: 1.7rem;
-  border-radius: 1em;
-  gap: 0.5em;
-
-  position: relative;
-  border-left: none;
-  border-right: solid 3px #6d687578;
-  border-bottom: solid 1px #6d687575;
-  box-shadow: 5px 0px 10px #00000030;
-  transition: 0.5s ease-in-out;
-}
-
-.card:hover {
-  border-right: none;
-  border-left: solid 3px #6d6875;
-  box-shadow: -5px 0px 10px #00000030;
-
-}
-
-.card-title {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #6d6875;
-  // color: $white;
-  align-items: center;
-  // gap: 0.5em;
-}
-
-.card-block {
-  @include flex-col;
-  font-weight: 300;
-  color: #6d6875;
-  gap: 0.5em;
-  padding: 1rem 0;
-
-  &__front-text {
-    font-size: 1rem;
-    line-height: 1.3rem;
-    padding-right: 5rem;
+  &__info {
+    @extend .discover__features;
+    flex-grow: 1;
   }
 
-  &__footer {
-    color: $white-75;
+  &__card {
+    @include flex-col;
+    flex: 1;
+    padding: 1.7rem;
+    border-radius: 1em; // convert to rem
+    gap: 0.5em; // convert to rem
+    // height: 100px;
+
+    position: relative;
+    border-left: none;
+    border-right: solid 3px $flash-color-semi-trans;
+    border-bottom: solid 1px $flash-color-semi-trans;
+    box-shadow: 5px 0px 10px $shadow-color;
+    transition: 0.5s ease-in-out;
+
+    &:hover {
+      border-right: none;
+      border-left: solid 3px $flash-color;
+      box-shadow: -5px 0px 10px $shadow-color;
+    }
+
+    &--title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: $flash-color;
+      align-items: center;
+    }
+
+    &--block {
+      @include flex-col;
+      font-weight: 300;
+      color: $flash-color;
+      gap: 0.5em;
+      padding: 1rem 0;
+
+      .discover__card--text {
+        font-size: 1rem;
+        line-height: 1.3rem;
+        padding-right: 4rem;
+      }
+
+      .discover__card--footer {
+        color: $white-75;
+      }
+    }
   }
-}
 
-.card-options {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  border-radius: 0.8rem 1rem 1rem 0.8rem;
-  background-color: #6d6875c1;
+  .discover__card--options {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 0.8rem 1rem 1rem 0.8rem;
+    background-color: $flash-color-semi-trans;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  // fill: #ffcdb2;
-
-  // padding: 1em;
-  gap: 1em;
-  opacity: 0;
-  transition: 0.5s;
-  @include glass-effect;
-  border-radius: 0.8rem 1rem 1rem 0.8rem;
-
-  // align-items: flex-start;
-  // justify-content: flex-start;
-
-  &__back-text {
-    color: $white-75;
-    text-align: center;
-    padding: 1.4rem;
-    line-height: 2.4rem;
-    font-size: 1.8rem;
-  }
-}
-
-.card:hover .card-options {
-  opacity: 1;
-  // transform: translate(50%) rotate(0deg);
-}
-
-.user-info {
-  display: flex;
-  justify-content: flex-start;
-  gap: 20px;
-
-  .column-keys,
-  .column-values {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    justify-content: center;
+    align-items: center;
+
+    gap: 1em;
+    opacity: 0;
+    transition: 0.5s;
+    @include glass-effect;
+    border-radius: 0.8rem 1rem 1rem 0.8rem;
+
+    // applies effect
+    &:hover { 
+      opacity: 1;
+    }
+
+    .discover__card--action {
+      color: $white-75;
+      text-align: center;
+      padding: 1.4rem;
+      line-height: 2.4rem;
+      font-size: 1.8rem;
+    }
   }
 
-  .column-keys {
-    width: 30%;
+  .card {
+    @extend .discover__card;
   }
 
-  .info-key {
-    line-height: 1.2;
-    font-weight: 600;
+  .card-title {
+    @extend .discover__card--title;
   }
 
-  .info-value {
-    line-height: 1.2;
+  .card-block {
+    @include flex-col;
+    font-weight: 300;
+    color: $flash-color;
+    gap: 0.5em;
+    padding: 1rem 0;
   }
+
+  .user-card, .daily-word-card {
+    flex-grow: 1;
+    flex-shrink: 0;  
+    overflow: auto; 
 }
 
-.daily-word-sent {
-  @include flex-col;
-  @include center-xy;
-  
-  height: 80px;
-
-  &__text {
- 
-    font-family: "Tenor Sans";
-    font-size: 1.8rem;
-    color: $white-75;
-    text-align: center;
-  }
-}
-
-.daily-word-card {
-  padding-bottom: 0;
-  &__title {
-    font-size: 2.4rem;
-  }
-
+  .user-info,
   .word-info {
     display: flex;
     justify-content: flex-start;
-    gap: 20px;
 
-    .info-key {
-      line-height: 1;
-      font-weight: 600;
-      // width:
-    }
-
-    .column-keys,
-    .column-values {
+    &__keys,
+    &__values {
       @include flex-col;
       width: 50%;
-      gap: 10px;
     }
 
-    // .column-keys {
-    //   width: 40%;
-    // }
-
-    .info-value {
+    &__key,
+    &__value {
       line-height: 1;
     }
   }
+
+  .daily-word-card {
+    flex-grow: 1;  
+    overflow: auto; 
+    display: flex; 
+    flex-direction: column; 
+  }
+
+  .daily-word-sent {
+    @include flex-col;
+    @include center-xy;
+    flex-grow: 1;  
+    height: 88px; // adjust to scale here
+
+    &__text {
+      font-family: "Tenor Sans";
+      font-size: 1.8rem;
+      color: $white-75;
+      text-align: center;
+    }
+  }
+}
+
+.column-keys,
+.column-values {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.column-keys {
+  width: 50%;
+}
+
+.info-key {
+  font-weight: 600;
 }
