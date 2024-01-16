@@ -1,5 +1,6 @@
 @import "../../styles/partials/variables";
 @import "../../styles/partials/mixins";
+@import "../../styles/partials/mixins-comps";
 
 .flash-submit {
   @include flex-col;
@@ -156,3 +157,7 @@
       margin-top: 1rem; // Add some spacing above the button container
     }
   }
+
+.input-translation {
+  // @include input-1;
+}

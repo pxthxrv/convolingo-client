@@ -66,10 +66,10 @@ export default function HomePage({ user }) {
   function FeatureCard({ title, description, actionText, action }) {
     return (
       <div className="discover__card">
-        <div className="discover__card--title">{title}</div>
+        <div className="discover__card--title font-size-title">{title}</div>
         <div className="discover__card--block">
-          <p className="discover__card--text">{description}</p>
-          <h5 className="discover__card--footer">Click to get started!</h5>
+          <p className="discover__card--text font-size-main">{description}</p>
+          <h5 className="discover__card--footer font-size-small">Click to get started!</h5>
         </div>
         <div className="discover__card--options">
           <button className="discover__card--action" onClick={action}>
@@ -86,14 +86,14 @@ export default function HomePage({ user }) {
     }
     return (
       <div className="card user-card">
-        <div className="card-title">YOUR PROFILE</div>
+        <div className="card-title font-size-title">YOUR PROFILE</div>
         <div className="card-block">
           <div className="user-info">
             <div className="column-keys">
               <span className="info-key">Name:</span>
               <span className="info-key">Learning:</span>
               <span className="info-key">Level:</span>
-              <span className="info-key">Commitment:</span>
+              <span className="info-key">Commitment:</span> 
               {/* <span className="info-key">Email:</span> */}
             </div>
             <div className="column-values">
@@ -124,7 +124,7 @@ export default function HomePage({ user }) {
 function DailyWord({ word }) {
   return (
     <div className="card daily-word-card">
-      <div className="card-title">WORD OF THE DAY</div>
+      <div className="card-title font-size-title">WORD OF THE DAY</div>
       <div className="card-block">
         <div className="word-info">
           <div className="column-keys">

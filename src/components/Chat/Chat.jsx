@@ -11,9 +11,6 @@ export default function Chat({ user }) {
   const [selectedText, setSelectedText] = useState("");
   const [translationResponse, setTranslationResponse] = useState(null);
   
-
-
-
   const copyToClipboard = async (text) => {
     try {
       await navigator.clipboard.writeText(text);

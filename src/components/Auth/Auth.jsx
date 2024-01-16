@@ -120,7 +120,7 @@ export default function Auth({ setIsLoggedIn, setUser, setUserId }) {
           )}
         </button>
       </div>
-      {feedback && <p class="display-error">{feedback}</p>}
+      {feedback && <p className="display-error">{feedback}</p>}
     </div>
     
     </>

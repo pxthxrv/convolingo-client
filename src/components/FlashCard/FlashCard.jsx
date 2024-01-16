@@ -59,6 +59,7 @@ export default function FlashCard({
       {!isFlipped && (
         <form onSubmit={handleSubmit} className="flash-card-input-form">
           <input
+            className="input-translation"
             type="text"
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
