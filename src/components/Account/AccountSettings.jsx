@@ -24,7 +24,27 @@ export default function AccountSettings({ setUser }) {
     // password_hash: '',
   };
   const [userData, setUserData] = useState(initialState);
+  
+  // Validate Functions
+  const validateUsername = (username) => {
+    // Make an API Call to see if 
+    return username.length >= 3;
+  };
 
+  const validateEmail = (email) => {
+    const regex = /\S+@\S+\.\S+/;
+    return regex.test(email);
+  };
+
+  const validateString = (string) => {
+    return string.length >= 3;
+  };
+
+  const validateRequired = (value) => {
+    return value.trim() !== '';
+  };
+
+  
   // GET EXISTING DATA on USER + fix date
   useEffect(() => {
     axios
@@ -65,6 +85,42 @@ export default function AccountSettings({ setUser }) {
   // SUBMIT
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Validation
+    if (!validateUsername(userData.username)) {
+      alert('Username must be at least 3 characters long and unique.');
+      return;
+    }
+    if (!validateEmail(userData.email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+    if (!validateString(userData.first_name)) {
+      alert('First name must be at least 3 characters long.');
+      return;
+    }
+    if (!validateString(userData.last_name)) {
+      alert('Last name must be at least 3 characters long.');
+      return;
+    }
+    if (!validateRequired(userData.native_language)) {
+      alert('Spoken language is required.');
+      return;
+    }
+    if (!validateRequired(userData.target_language)) {
+      alert('Target language is required.');
+      return;
+    }
+    if (!validateRequired(userData.cefr)) {
+      alert('CEFR level is required.');
+      return;
+    }
+    if (!validateRequired(userData.time_per_day)) {
+      alert('Daily commitment level is required.');
+      return;
+    }
+
+
     // remove id and password from request
     const { password_hash, id, ...dataToSend } = userData;
     // format date
@@ -102,6 +158,7 @@ export default function AccountSettings({ setUser }) {
           <div className="form-container__left">
             {/* Username */}
             <div className="question">
+              <label className="label" htmlFor="username">{"USERNAME"}</label>
               <input
                 id="username"
                 name="username"
@@ -109,12 +166,13 @@ export default function AccountSettings({ setUser }) {
                 required
                 onChange={handleInputChange}
                 value={userData.username || ""}
+                className="input input-text"
               />
-              <label htmlFor="username">{"USERNAME"}</label>
             </div>
 
             {/* Email */}
             <div className="question">
+              <label className="label" htmlFor="email">{"EMAIL"}</label>
               <input
                 id="email"
                 name="email"
@@ -122,12 +180,13 @@ export default function AccountSettings({ setUser }) {
                 required
                 onChange={handleInputChange}
                 value={userData.email || ""}
+                className="input input-text"
               />
-              <label htmlFor="email">{"EMAIL"}</label>
             </div>
 
             {/* First Name */}
             <div className="question">
+              <label className="label" htmlFor="first_name">{"FIRST NAME"}</label>
               <input
                 id="first_name"
                 name="first_name"
@@ -135,12 +194,13 @@ export default function AccountSettings({ setUser }) {
                 required
                 onChange={handleInputChange}
                 value={userData.first_name || ""}
+                className="input input-text"
               />
-              <label htmlFor="first_name">{"FIRST NAME"}</label>
             </div>
 
             {/* Last Name */}
             <div className="question">
+              <label className="label" htmlFor="last_name">{"LAST NAME"}</label>
               <input
                 id="last_name"
                 name="last_name"
@@ -148,12 +208,13 @@ export default function AccountSettings({ setUser }) {
                 required
                 onChange={handleInputChange}
                 value={userData.last_name || ""}
+                className="input input-text"
               />
-              <label htmlFor="last_name">{"LAST NAME"}</label>
             </div>
 
             {/* Date of Birth */}
             <div className="question">
+              <label className="label" htmlFor="date_of_birth">DATE OF BIRTH</label>
               <input
                 id="date_of_birth"
                 name="date_of_birth"
@@ -161,13 +222,17 @@ export default function AccountSettings({ setUser }) {
                 required
                 onChange={handleInputChange}
                 value={userData.date_of_birth || ""}
+                className="input select-date"
               />
-              <label htmlFor="date_of_birth">Date of Birth</label>
             </div>
           </div>
 
           <div className="form-container__right">
+          
             <div className="question">
+            <label className="label" htmlFor="native_language">
+              SPOKEN LANGUAGE
+            </label>
               <select
                 id="native_language"
                 name="native_language"
@@ -182,12 +247,12 @@ export default function AccountSettings({ setUser }) {
                   </option>
                 ))}
               </select>
-              <label className="label" htmlFor="native_language">
-                SPOKEN LANGUAGE
-              </label>
             </div>
 
             <div className="question">
+              <label className="label" htmlFor="target_language">
+                TARGET LANGUAGE
+              </label>
               <select
                 id="target_language"
                 name="target_language"
@@ -202,12 +267,12 @@ export default function AccountSettings({ setUser }) {
                   </option>
                 ))}
               </select>
-              <label className="label" htmlFor="target_language">
-                TARGET LANGUAGE
-              </label>
             </div>
 
             <div className="question">
+              <label className="label" htmlFor="cefr">
+                CEFR LEVEL
+              </label>
               <select
                 id="cefr"
                 name="cefr"
@@ -235,12 +300,12 @@ export default function AccountSettings({ setUser }) {
                   </option>
                 ))}
               </select>
-              <label className="label" htmlFor="cefr">
-                CEFR LEVEL
-              </label>
             </div>
 
             <div className="question">
+              <label className="label" htmlFor="time_per_day">
+                DAILY COMMITMENT
+              </label>
               <select
                 id="time_per_day"
                 name="time_per_day"
@@ -254,9 +319,7 @@ export default function AccountSettings({ setUser }) {
                 <option value="60">60 minutes</option>
                 <option value="90">90 minutes</option>
               </select>
-              <label className="label" htmlFor="time_per_day">
-                TIME PER DAY
-              </label>
+
               <button className="btn-submit" type="submit">
                 Submit
               </button>

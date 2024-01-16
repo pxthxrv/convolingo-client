@@ -3,8 +3,8 @@ import "./GettingStartedPage.scss";
 
 export default function GettingStartedPage({ setUser }) {
   return (
-    <div className="glass account-settings-container">
+    // <div className="glass account-settings-container">
       <AccountSettings setUser={setUser} />
-    </div>
+
   );
 }
