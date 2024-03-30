@@ -73,8 +73,8 @@ export default function Chat({ user }) {
       const response = await axios.post(`${API_URL}/chat/send`, {
         userMessage: inputValue,
         user_id: user.id,
-        // language: user.target_language_display, // switch to display_language on the back-end //context or redux // or pass down formatter function as a prop
-        language: "German",
+        language: user.target_language_display, // switch to display_language on the back-end //context or redux // or pass down formatter function as a prop
+        // language: "German",
         cefrLevel: user.cefr,
         words: words
       });

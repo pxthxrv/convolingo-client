@@ -8,28 +8,8 @@ import words from "../../data/german/words";
 const randomWordId = words.length - 1;
 
 export default function HomePage({ user }) {
-  const [language, setLanguage] = useState("");
+  // const [language, setLanguage] = useState("");
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       const displayLanguageData = await getLanguageById(user.id);
-  //       if (displayLanguageData) {
-  //         setLanguage(displayLanguageData);
-  //         console.log("Fetched and set language:", displayLanguageData);
-  //       } else {
-  //         console.error("Data is undefined or null");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching language data:", error);
-  //     }
-  //   }
-  //   fetchData();
-  // }, [user.id]);
-
-// const test = getLanguageById("display name", getLanguageById(user.id));
-// console.log(test);
 
   const navigateToFlashcards = () => {
     navigate("/flashcards");
@@ -38,6 +18,8 @@ export default function HomePage({ user }) {
   const navigateToChat = () => {
     navigate(`/chat/${user.id}`);
   };
+
+  console.log(getLanguageById(1));
 
   const featureCards = [
     {
@@ -84,6 +66,12 @@ export default function HomePage({ user }) {
     const navigateToAccountSettings = () => {
       navigate(`/getting-started/${user.id}`)
     }
+
+    const targetLanguageObject = getLanguageById(user.target_language);
+    const targetLanguageName = targetLanguageObject ? targetLanguageObject.display_name : 'Unknown language';
+
+
+
     return (
       <div className="card user-card">
         <div className="card-title font-size-title">YOUR PROFILE</div>
@@ -94,18 +82,16 @@ export default function HomePage({ user }) {
               <span className="info-key">Learning:</span>
               <span className="info-key">Level:</span>
               <span className="info-key">Commitment:</span> 
-              {/* <span className="info-key">Email:</span> */}
             </div>
             <div className="column-values">
               <span className="info-value">
                 {user.first_name} {user.last_name}
               </span>
-              <span className="info-value">German</span>
+              <span className="info-value">{targetLanguageName}</span>
               <span className="info-value">{user.cefr}</span>
               <span className="info-value">
                 {user.time_per_day} Minutes per Day
               </span>
-              {/* <span className="info-value">{user.email}</span> */}
                    
             </div>
           </div>

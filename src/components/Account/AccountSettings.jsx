@@ -15,9 +15,9 @@ export default function AccountSettings({ setUser }) {
     first_name: "",
     last_name: "",
     date_of_birth: "",
-    native_language: "",
-    target_language: "",
-    time_per_day: "",
+    native_language: null,
+    target_language: null,
+    time_per_day: null,
     level: "",
     difficulty: "",
     cefr: "",
@@ -41,7 +41,14 @@ export default function AccountSettings({ setUser }) {
   };
 
   const validateRequired = (value) => {
-    return value.trim() !== '';
+    if (typeof value === 'string') {
+      return value.trim() !== '';
+    } else if (typeof value === 'number') {
+      return !isNaN(value); // Ensure language input is not NaN
+    } else {
+      console.error('Invalid type for value:', value);
+      return false; 
+    }
   };
 
   
@@ -120,25 +127,32 @@ export default function AccountSettings({ setUser }) {
       return;
     }
 
-
     // remove id and password from request
     const { password_hash, id, ...dataToSend } = userData;
     // format date
     const formattedDateOfBirth = new Date(userData.date_of_birth)
       .toISOString()
       .split("T")[0];
+
     const updatedUserData = {
       ...dataToSend,
+      target_language: Number(userData.target_language),
+      native_language: Number(userData.native_language),
       date_of_birth: formattedDateOfBirth,
     };
+
+    // Log each key-value along with its type
+    Object.entries(updatedUserData).forEach(([key, value]) => {
+      console.log(`${key}: ${value} (${typeof value})`);
+  });
+
     axios
       .patch(`${API_URL}/user/update/${userId}`, updatedUserData)
       .then((response) => {
         console.log("Success:", response.data.message);
 
-        // added this line
         return axios.get(`${API_URL}/user/${userId}`);
-        // navigate(`/home/${userId}`);
+
       })
       .then((response) => {
         const updatedUserData = response.data;
