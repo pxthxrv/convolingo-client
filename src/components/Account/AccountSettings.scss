@@ -5,7 +5,6 @@
 
 
 .page {
-
   @include flex-col;
   @include center-xy;
 }
@@ -13,7 +12,6 @@
 .form {
   @include flex-col;
   @include center-xy;
-
 
   @include card-transparent;
 

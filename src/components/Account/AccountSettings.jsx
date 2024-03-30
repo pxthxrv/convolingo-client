@@ -41,7 +41,14 @@ export default function AccountSettings({ setUser }) {
   };
 
   const validateRequired = (value) => {
-    return value.trim() !== '';
+    if (typeof value === 'string') {
+      return value.trim() !== '';
+    } else if (typeof value === 'number') {
+      return !isNaN(value); // Ensure language input is not NaN
+    } else {
+      console.error('Invalid type for value:', value);
+      return false; 
+    }
   };
 
   
@@ -127,18 +134,24 @@ export default function AccountSettings({ setUser }) {
     const formattedDateOfBirth = new Date(userData.date_of_birth)
       .toISOString()
       .split("T")[0];
+
     const updatedUserData = {
       ...dataToSend,
       date_of_birth: formattedDateOfBirth,
     };
+
+    // Log each key-value along with its type
+    Object.entries(updatedUserData).forEach(([key, value]) => {
+      console.log(`${key}: ${value} (${typeof value})`);
+  });
+
     axios
       .patch(`${API_URL}/user/update/${userId}`, updatedUserData)
       .then((response) => {
         console.log("Success:", response.data.message);
 
-        // added this line
         return axios.get(`${API_URL}/user/${userId}`);
-        // navigate(`/home/${userId}`);
+        
       })
       .then((response) => {
         const updatedUserData = response.data;
