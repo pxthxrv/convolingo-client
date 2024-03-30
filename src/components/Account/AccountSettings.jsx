@@ -127,7 +127,6 @@ export default function AccountSettings({ setUser }) {
       return;
     }
 
-
     // remove id and password from request
     const { password_hash, id, ...dataToSend } = userData;
     // format date
@@ -137,6 +136,8 @@ export default function AccountSettings({ setUser }) {
 
     const updatedUserData = {
       ...dataToSend,
+      target_language: Number(userData.target_language),
+      native_language: Number(userData.native_language),
       date_of_birth: formattedDateOfBirth,
     };
 
@@ -151,7 +152,7 @@ export default function AccountSettings({ setUser }) {
         console.log("Success:", response.data.message);
 
         return axios.get(`${API_URL}/user/${userId}`);
-        
+
       })
       .then((response) => {
         const updatedUserData = response.data;
