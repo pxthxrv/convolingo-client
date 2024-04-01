@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { fetchUserProfile } from '../../features/user/userSlice';
 import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5050";
-const dispatch = useDispatch();
+// const dispatch = useDispatch();
 
 export default function Auth({ setIsLoggedIn, setUser, setUserId }) {
   const [isLoginMode, setIsLoginMode] = useState(true);
