@@ -17,7 +17,7 @@ export default function AccountSettings({ setUser }) {
     date_of_birth: "",
     native_language: null,
     target_language: null,
-    time_per_day: null,
+    time_per_day: null, 
     level: "",
     difficulty: "",
     cefr: "",

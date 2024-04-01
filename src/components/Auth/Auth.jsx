@@ -2,8 +2,11 @@ import "./Auth.scss";
 
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { fetchUserProfile } from '../../features/user/userSlice';
 import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5050";
+const dispatch = useDispatch();
 
 export default function Auth({ setIsLoggedIn, setUser, setUserId }) {
   const [isLoginMode, setIsLoginMode] = useState(true);
@@ -46,7 +49,7 @@ export default function Auth({ setIsLoggedIn, setUser, setUserId }) {
 
       const response = await axios.post(url, { username, password });
       setFeedback(response.data.message);
-      if (response.status === 200) {
+      if (response.status === 200 || response.status === 201) {
         const user = await axios.get(`${API_URL}/auth/check`);
         setIsLoggedIn(true);
         setUser(user.data.user);
@@ -54,6 +57,8 @@ export default function Auth({ setIsLoggedIn, setUser, setUserId }) {
         setUserId(userId);
         navigate(`/home/${userId}`); // if login successful navigate to user home
         // navigate(`/getting-started/${userID}`); // if account creation successfull, navigate
+
+        dispatch(fetchUserProfile(userId));
       }
       if (response.status === 201) {
         console.log("if log in: ", response.data);
