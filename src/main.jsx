@@ -5,7 +5,6 @@ import { store } from './store';
 import App from './App.jsx'
 import './index.scss'
 
-// Correctly create a root and render your app within it
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

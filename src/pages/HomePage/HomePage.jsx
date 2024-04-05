@@ -1,6 +1,8 @@
 import "./HomePage.scss";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
 import { getLanguageById } from "../../utils/lookUp";
 import words from "../../data/german/words";
 
@@ -18,8 +20,6 @@ export default function HomePage({ user }) {
   const navigateToChat = () => {
     navigate(`/chat/${user.id}`);
   };
-
-  console.log(getLanguageById(1));
 
   const featureCards = [
     {
@@ -67,10 +67,10 @@ export default function HomePage({ user }) {
       navigate(`/getting-started/${user.id}`)
     }
 
-    const targetLanguageObject = getLanguageById(user.target_language);
-    const targetLanguageName = targetLanguageObject ? targetLanguageObject.display_name : 'Unknown language';
-
-
+    const targetLanguageName = useSelector(state => {
+      const languageId = state.user.profile?.target_language;
+      return getLanguageById(languageId)?.display_name || 'Unknown language';
+  });
 
     return (
       <div className="card user-card">

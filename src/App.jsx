@@ -1,6 +1,8 @@
 import "./App.scss";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useSelector } from 'react-redux';
+
 import axios from "axios";
 axios.defaults.withCredentials = true;
 import HomePage from "./pages/HomePage/HomePage";
@@ -19,14 +21,16 @@ export default function App() {
   const [userId, setUserId] = useState(null);
   const [user, setUser] = useState(null);
 
-  // check is user is autheticaed/logged in
+  const userProfile = useSelector((state) => state.user.profile);
+  console.log(userProfile);
+
+  // check if user is authenticated/logged in
   useEffect(() => {
     setIsLoading(true);
     axios
       .get(`${API_URL}/auth/check`)
       .then((response) => {
         setIsLoading(false);
-        // console.log(response);
         if (response.data.isAuthenticated) {
           setIsLoggedIn(true);
           console.log(response.data)
@@ -44,7 +48,7 @@ export default function App() {
         console.error("Error checking authentication status", error);
         setIsLoggedIn(false);
       });
-  }, []); // The empty a
+  }, []);
 
   return (
     <BrowserRouter>
